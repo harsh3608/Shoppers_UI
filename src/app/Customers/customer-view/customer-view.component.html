@@ -1,0 +1,50 @@
+<p-dialog header= "Customer Details" [(visible)]="displayModal" [modal]="true"
+  [style]="{width: '50vw'}" [baseZIndex]="10000"
+  [draggable]="false" [resizable]="false">
+
+  <div class="pr-2">
+
+    <strong><span class="material-icons">
+      badge
+      </span> ID:</strong>
+    <span class="text-justify"> {{ customer.customerId }} </span>
+    <hr />
+    <strong><span class="material-icons">
+      person
+      </span> Name:</strong>
+    <span class="text-justify"> {{ customer.firstName +" "+ customer.lastName }} </span>
+    <hr />
+    <strong><span class="material-icons">
+      boy
+      </span> Age:</strong>
+    <span class="text-justify"> {{ customer.age }} </span>
+    <hr />
+    <strong><span class="material-icons">
+      smartphone
+      </span> Mobile Number:</strong>
+    <span class="text-justify"> {{ customer.mobileNumber }} </span>
+    <hr />
+    <strong><span class="material-icons">
+      mail
+      </span> Email:</strong>
+    <span class="text-justify"> {{ customer.email }} </span>
+    <hr />
+    <strong><span class="material-icons">
+      location_on
+      </span> City:</strong>
+    <span class="text-justify"> {{ customer.city }} </span>
+    <hr />
+    <strong><span class="material-icons">
+      card_membership
+      </span> Is Prime Member?</strong>
+    <span class="text-justify"> {{ customer.isPrimeMember? 'Yes':'No' }} </span>
+  </div>
+
+  <ng-template pTemplate="footer">
+    <p-button  routerLink="/customers" styleClass="p-button-danger"  >
+      <span class="material-symbols-outlined" >
+        Back
+      </span>
+    </p-button>
+  </ng-template>
+</p-dialog>

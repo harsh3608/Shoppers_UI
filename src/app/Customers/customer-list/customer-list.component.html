@@ -1,0 +1,112 @@
+<div class="container my-5 card" >
+  <br>
+  <div class="row" style="margin-left: 1%;">
+    <h1 class="mx-5 my-5 ">Manage Customers</h1>
+  </div>
+
+  <p-table #dt1 [value]="customers" dataKey="productId" [rows]="10" responsiveLayout="scroll" [showCurrentPageReport]="true"
+  [rowsPerPageOptions]="[10, 20, 50]" [loading]="loading" styleClass="p-datatable-customers" [paginator]="true"
+   currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+   [globalFilterFields]="['customerId','firstName','lastName','age','city','isPrimeMember']">
+
+    <ng-template pTemplate="caption">
+      <div class="flex">
+        <div class="row">
+          <div class="col" style="display: inline; ">
+            <span class="p-input-icon-left ml-auto">
+              <i class="pi pi-search"></i>
+              <input pInputText type="text" (input)="dt1.filterGlobal($any($event.target).value, 'contains')" placeholder="Search keyword" />
+            </span>
+          </div>
+          <div class="col" style="display: inline; margin-left: 63%;">
+            <!-- <button class="btn btn-primary" routerLink="/customer/add">
+              <span class="material-icons" style="color: orangered;">
+              add
+              </span>
+            </button> -->
+            <p-button icon="pi pi-plus" routerLink="/customer/add" label="Add" ></p-button>
+          </div>
+          <div class="col" style=" display: inline; float: right;">
+            <button pButton label="Clear" class="p-button-outlined mt-3 " icon="pi pi-filter-slash" (click)="clear(dt1)"></button>
+          </div>
+        </div>
+
+      </div>
+    </ng-template>
+
+    <ng-template pTemplate="colgroup">
+      <colgroup>
+          <col [style.width]="'120px'">
+          <col [style.width]="'150px'">
+          <col [style.width]="'80px'">
+          <col [style.width]="'120px'">
+          <col [style.width]="'100px'">
+          <col [style.width]="'130px'">
+      </colgroup>
+    </ng-template>
+
+    <ng-template pTemplate="header">
+     <tr>
+        <th pSortableColumn="customerId">Customer Id<p-sortIcon field="customerId"></p-sortIcon>
+          </th>
+        <th pSortableColumn="firstName">Name<p-sortIcon field="firstName"></p-sortIcon>
+          </th>
+        <th pSortableColumn="age">Age<p-sortIcon field="age"></p-sortIcon>
+          </th>
+        <th pSortableColumn="city">City<p-sortIcon field="city"></p-sortIcon>
+          </th>
+        <th pSortableColumn="isPrimeMember">Is Prime Member?<p-sortIcon field="isPrimeMember"></p-sortIcon>
+          </th>
+        <th>Action</th>
+     </tr>
+     <tr>
+        <th>
+         <p-columnFilter type="text" field="customerId"></p-columnFilter>
+        </th>
+        <th>
+         <p-columnFilter type="text" field="firstName"></p-columnFilter>
+        </th>
+        <th>
+         <p-columnFilter type="text" field="age"></p-columnFilter>
+        </th>
+        <th>
+         <p-columnFilter type="text" field="city"></p-columnFilter>
+        </th>
+        <th>
+         <p-columnFilter type="text" field="isPrimeMember"></p-columnFilter>
+        </th>
+        <th>
+        </th>
+     </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-Customer>
+     <tr>
+        <td>{{Customer.customerId}}</td>
+        <td>{{Customer.firstName +" "+ Customer.lastName}}</td>
+        <td>{{Customer.age}}</td>
+        <td>{{Customer.city}}</td>
+        <td>{{Customer.isPrimeMember? 'Yes':'No'}}</td>
+        <td>
+          <button type="submit"  class="btn btn-info  " [routerLink]="['/customer','view',Customer.customerId]">
+            <span class="material-icons" style="color: green;">visibility</span>
+          </button>
+          {{" "}}
+          <button type="submit" class="btn btn-primary mt-2 " [routerLink]="['/customer','edit',Customer.customerId]">
+            <span class="material-icons" style="color: blue;">edit</span>
+          </button>
+          {{" "}}
+          <button type="button" class="btn btn-danger mt-2"
+          (click)="getConfirm(Customer.customerId)">
+          <span class="material-icons " style="color: red;">delete</span></button>
+
+        </td>
+     </tr>
+    </ng-template>
+    <ng-template pTemplate="emptymessage">
+     <tr>
+       <td colspan="5">No customers found.</td>
+     </tr>
+    </ng-template>
+  </p-table>
+</div>
+

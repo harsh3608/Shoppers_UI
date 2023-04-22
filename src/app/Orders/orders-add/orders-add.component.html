@@ -1,0 +1,174 @@
+<!-- <p-dialog header="Add Customer" [(visible)]="displayModal" [modal]="true"
+  [style]="{width: '50vw'}" [baseZIndex]="10000"
+  [draggable]="false" [resizable]="false">
+
+    <br>
+    <div class="container">
+      <form [formGroup]="addOrderForm" (ngSubmit)="registerSubmitted()">
+      <div class="row "  >
+        <div class="col mb-3 form-input" >
+          <div style="margin-bottom: 10px;">
+            <label for="orderName" class="form-label">Order Name</label>
+          </div>
+          <input type="text" pInputText class="form-control" id="orderName" formControlName="orderName" maxlength="20">
+          <div class="alert alert-danger" style="color: red;" *ngIf="orderName.errors?.['required'] && (orderName.touched || orderName.dirty)">
+            <h5>Order Name is Required !</h5>
+          </div >
+
+        </div>
+
+      </div>
+      <br>
+
+      <div class="row">
+        <div class="col mb-3 form-input" >
+          <div style="margin-bottom: 10px;">
+            <label for="customerId" class="form-label">Customer ID</label>
+          </div>
+          <input type="text" pInputText class="form-control" id="customerId" formControlName="customerId">
+          <p-dropdown [options]="customers" [(ngModel)]="selectedCustomer" optionLabel="name" [filter]="true" filterBy="name"
+	          [showClear]="true" placeholder="Select a Country">
+	          <ng-template pTemplate="selectedItem">
+		        <div class="country-item country-item-value" *ngIf="selectedCustomer">
+			        <div>{{selectedCustomer.firstName}}</div>
+		        </div>
+	          </ng-template>
+	          <ng-template *ngFor="let Customer of customers" pTemplate="item">
+		          <div class="country-item">
+			          <div>{{Customer.firstName}}</div>
+		          </div>
+	          </ng-template>
+          </p-dropdown>
+
+          <select class="form-control" id="customerId" formControlName="customerId">
+            <option value="">-- Select Your Manager --</option>
+            <option *ngFor="let Customer of customers" [value]="Customer.customerId"  >
+                {{Customer.firstName+" "+Customer.lastName}}
+            </option>
+          </select>
+
+          <div class="alert alert-danger" style="color: red;" *ngIf="customerId.errors?.['required'] && (customerId.touched || customerId.dirty)">
+            <h5>Customer ID is Required !</h5>
+          </div >
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col mb-3 form-input" >
+          <div style="margin-bottom: 10px;">
+            <label for="customerId" class="form-label">Customer ID</label>
+          </div>
+          <p-dropdown [options]="customers"
+	          [showClear]="true" placeholder="Select a Country">
+	          <select class="form-control" id="customerId" formControlName="customerId">
+              <option value="">-- Select Your Manager --</option>
+              <option *ngFor="let Customer of customers" [value]="Customer.customerId"  >
+                  {{Customer.firstName+" "+Customer.lastName}}
+              </option>
+            </select>
+          </p-dropdown>
+
+          <select class="form-control" id="customerId" formControlName="customerId">
+            <option value="">-- Select Your Manager --</option>
+            <option *ngFor="let Customer of customers" [value]="Customer.customerId"  >
+                {{Customer.firstName+" "+Customer.lastName}}
+            </option>
+          </select>
+
+          <mat-form-field appearance="fill">
+            <mat-label>-- Select Customer --</mat-label>
+            <mat-select style="display: block;">
+              <mat-option *ngFor="let Customer of customers" >
+                {{Customer.firstName+" "+Customer.lastName}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+
+          <div class="alert alert-danger" style="color: red;" *ngIf="customerId.errors?.['required'] && (customerId.touched || customerId.dirty)">
+            <h5>Customer ID is Required !</h5>
+          </div >
+        </div>
+      </div>
+
+
+
+
+      <br>
+      <div class="row ">
+        <div class="col mb-3 form-input" >
+          <div style="margin-bottom: 10px;">
+            <label for="amount" class="form-label">Amount</label>
+          </div>
+          <input type="text" pInputText class="form-control"  id="amount"  formControlName="amount">
+          <div class="alert alert-danger" style="color: red;" *ngIf="amount.errors?.['required'] && (amount.touched || amount.dirty)">
+            <h5>Amount is Required !</h5>
+          </div >
+        </div>
+      </div>
+      <br>
+      <div class="row "  >
+        <div class="col mb-3 form-input" >
+          <div style="margin-bottom: 10px;" >
+            <label for="orderDate" class="form-label">Order Date</label>
+          </div>
+
+
+          <div class="container">
+            <span class="ui-float-label">
+              <p-calendar  hourFormat="12"  inputId="text" id="text" [showIcon]="true" [inline]="true"></p-calendar>
+
+            </span>
+          </div>
+
+          <div class="alert alert-danger" style="color: red;" *ngIf="orderDate.errors?.['required'] && (orderDate.touched || orderDate.dirty)">
+            <h5>Order Date is Required !</h5>
+          </div >
+        </div>
+      </div>
+
+
+      <div class="row">
+        <div class="col form-input"></div>
+        <div class="col form-input">
+          <div class="row">
+            <div class="col form-input">
+              <p-button  type="submit" >
+                <span class="material-symbols-outlined">
+                  Save
+                </span>
+              </p-button>
+            </div>
+            <div class="col form-input">
+              <p-button  (click)="onCancel()" styleClass="p-button-danger"  >
+                <span class="material-symbols-outlined" >
+                  Back
+                </span>
+              </p-button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+    </form>
+    </div>
+
+        <ng-template pTemplate="footer">
+
+        </ng-template>
+</p-dialog> -->
+
+<ol>
+  <li>
+    <mat-form-field appearance="fill">
+      <mat-label>What's your name?</mat-label>
+      <input matInput >
+    </mat-form-field>
+  </li>
+  <li>
+    <button mat-raised-button >Pick one</button>
+  </li>
+  
+</ol>
+

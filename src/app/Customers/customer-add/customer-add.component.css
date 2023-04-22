@@ -1,0 +1,24 @@
+.p-button {
+  margin: 0 .5rem 0 0;
+  min-width: 10rem;
+}
+
+p {
+  margin: 0;
+}
+
+.confirmation-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.p-dialog .p-button {
+  min-width: 6rem;
+}
+
+.form-input {
+  width: 50%;
+  display: inline-block;
+  padding: 2px;
+}

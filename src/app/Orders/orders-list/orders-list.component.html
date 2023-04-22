@@ -1,0 +1,99 @@
+<div class="container my-5 card">
+  <br>
+  <div class="row" style="margin-left: 1%;">
+    <h1 class="mx-5 my-5 ">Manage Orders</h1>
+  </div>
+
+  <p-table #dt1 [value]="orders" dataKey="orderId" [rows]="10" responsiveLayout="scroll" [showCurrentPageReport]="true"
+  [rowsPerPageOptions]="[10, 20, 50]" [loading]="loading" styleClass="p-datatable-customers" [paginator]="true"
+   currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+   [globalFilterFields]="['orderId','orderName','orderDate','amaount']">
+
+   <ng-template pTemplate="caption">
+    <div class="flex">
+      <div class="row">
+        <div class="col" style="display: inline; ">
+          <span class="p-input-icon-left ml-auto">
+            <i class="pi pi-search"></i>
+            <input pInputText type="text" (input)="dt1.filterGlobal($any($event.target).value, 'contains')" placeholder="Search keyword" />
+          </span>
+        </div>
+        <div class="col" style="display: inline; margin-left: 63%;">
+          <p-button icon="pi pi-plus" routerLink="/order/add" label="Add" ></p-button>
+        </div>
+        <div class="col" style=" display: inline; float: right;">
+          <button pButton label="Clear" class="p-button-outlined mt-3 " icon="pi pi-filter-slash" (click)="clear(dt1)"></button>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+  <ng-template pTemplate="colgroup">
+    <colgroup>
+        <col [style.width]="'80px'">
+        <col [style.width]="'150px'">
+        <col [style.width]="'80px'">
+        <col [style.width]="'50px'">
+        <col [style.width]="'100px'">
+    </colgroup>
+  </ng-template>
+  <ng-template pTemplate="header">
+    <tr>
+       <th pSortableColumn="orderId">Order Id<p-sortIcon field="orderId"></p-sortIcon>
+        </th>
+       <th pSortableColumn="orderName">Order Name<p-sortIcon field="orderName"></p-sortIcon>
+        </th>
+       <th pSortableColumn="orderDate">Date<p-sortIcon field="orderDate"></p-sortIcon>
+        </th>
+       <th pSortableColumn="amount">Amount<p-sortIcon field="amount"></p-sortIcon>
+        </th>
+       <th>Action</th>
+    </tr>
+    <tr>
+       <th>
+        <p-columnFilter type="text" field="orderId"></p-columnFilter>
+       </th>
+       <th>
+        <p-columnFilter type="text" field="orderName"></p-columnFilter>
+       </th>
+       <th>
+        <p-columnFilter type="text" field="orderDate"></p-columnFilter>
+       </th>
+       <th>
+        <p-columnFilter type="text" field="amount"></p-columnFilter>
+       </th>
+       <th>
+       </th>
+    </tr>
+   </ng-template>
+   <ng-template pTemplate="body" let-Order>
+    <tr>
+       <td>{{Order.orderId}}</td>
+       <td>{{Order.orderName}}</td>
+       <td>{{Order.orderDate | date: 'MM-dd-yyyy  h:mm:ss a'}}</td>
+       <td>{{Order.amount}}</td>
+       <td>
+         <button type="submit"  class="btn btn-info  " [routerLink]="['/order','view',Order.orderId]">
+           <span class="material-icons" style="color: green;">visibility</span>
+         </button>
+         {{" "}}
+         <button type="submit" class="btn btn-primary mt-2 " [routerLink]="['/order','edit',Order.orderId]">
+           <span class="material-icons" style="color: blue;">edit</span>
+         </button>
+         {{" "}}
+         <button type="button" class="btn btn-danger mt-2"
+         (click)="getConfirm(Order.orderId)">
+         <span class="material-icons " style="color: red;">delete</span></button>
+
+       </td>
+    </tr>
+   </ng-template>
+   <ng-template pTemplate="emptymessage">
+    <tr>
+      <td colspan="5">No Orders found.</td>
+    </tr>
+   </ng-template>
+
+  </p-table>
+
+</div>
+

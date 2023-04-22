@@ -1,0 +1,138 @@
+<p-dialog header="Add Customer" [(visible)]="displayModal" [modal]="true"
+  [style]="{width: '50vw'}" [baseZIndex]="10000"
+  [draggable]="false" [resizable]="false">
+
+    <br>
+    <div class="container">
+      <form [formGroup]="addCustomerForm" (ngSubmit)="registerSubmitted()">
+      <div class="row "  >
+        <div class="col mb-3 form-input" >
+          <div style="margin-bottom: 10px;">
+            <label for="firstName" class="form-label">First Name</label>
+          </div>
+          <input type="text" pInputText class="form-control" id="firstName" formControlName="firstName" maxlength="15">
+          <div class="alert alert-danger" style="color: red;" *ngIf="firstName.errors?.['required'] && (firstName.touched || firstName.dirty)">
+            <h5>First Name is Required !</h5>
+          </div >
+          <div class="alert alert-danger" style="color: red; margin-right: 100px;" *ngIf="firstName.errors?.['minlength'] || firstName.errors?.['pattern'] && (firstName.touched || firstName.dirty)" >
+            <h5>First name should contain only letters and must be of min(3) to max(15) characters ! </h5>
+          </div>
+        </div>
+
+        <div class="col mb-3 form-input" >
+          <div style="margin-bottom: 10px;">
+            <label for="lastName" class="form-label">Last Name</label>
+          </div>
+          <input type="text" pInputText class="form-control" id="lastName" formControlName="lastName" maxlength="15">
+          <div class="alert alert-danger" style="color: red;" *ngIf="lastName.errors?.['required'] && (lastName.touched || lastName.dirty)">
+            <h5>Last Name is Required !</h5>
+          </div >
+          <div class="alert alert-danger" style="color: red; margin-right: 100px;" *ngIf="lastName.errors?.['minlength'] || lastName.errors?.['pattern'] && (lastName.touched || lastName.dirty)" >
+            <h5>Last name should contain only letters and must be of min(3) to max(15) characters !</h5>
+          </div>
+        </div>
+
+      </div>
+      <br>
+      <div class="row "  >
+
+        <div class="col mb-3 form-input" >
+          <div style="margin-bottom: 10px;">
+            <label for="age" class="form-label">Age</label>
+          </div>
+          <input type="text" pInputText class="form-control" id="age" formControlName="age" maxlength="2">
+          <div class="alert alert-danger" style="color: red;" *ngIf="Age.errors?.['required'] && (Age.touched || Age.dirty)">
+            <h5>Age is Required !</h5>
+          </div >
+          <div class="alert alert-danger" style="color: red; margin-right: 100px;" *ngIf="Age.errors?.['maxlength'] || Age.errors?.['pattern'] && (Age.touched || Age.dirty)" >
+            <h5>Please enter valid Age !</h5>
+          </div>
+        </div>
+
+        <div class="col mb-3 form-input" >
+          <div style="margin-bottom: 10px;">
+            <label for="email" class="form-label">Email</label>
+          </div>
+          <input type="text" pInputText class="form-control" id="email" formControlName="email">
+          <div class="alert alert-danger" style="color: red;" *ngIf="email.errors?.['required'] && (email.touched || email.dirty)">
+            <h5>Email is Required !</h5>
+          </div >
+          <div class="alert alert-danger" style="color: red; margin-right: 100px;" *ngIf="email.errors?.['email'] || email.errors?.['pattern'] && (email.touched || email.dirty)" >
+            <h5>Please enter valid Email !</h5>
+          </div>
+        </div>
+      </div>
+      <br>
+      <div class="row ">
+        <div class="col mb-3 form-input" >
+          <div style="margin-bottom: 10px;">
+            <label for="mobileNumber" class="form-label">Mobile Number</label>
+          </div>
+          <input type="text" pInputText class="form-control"  id="mobileNumber" pattern="[0-9]{10}" formControlName="mobileNumber">
+          <div class="alert alert-danger" style="color: red;" *ngIf="mobile.errors?.['required'] && (mobile.touched || mobile.dirty)">
+            <h5>Mobile Number is Required !</h5>
+          </div >
+          <div class="alert alert-danger" style="color: red; margin-right: 100px;" *ngIf="mobile.errors?.['pattern'] && (mobile.touched || mobile.dirty)" >
+            <h5>Please enter valid Mobile Number !</h5>
+          </div>
+        </div>
+        <div class="col mb-3 form-input" >
+          <div style="margin-bottom: 10px;">
+            <label for="city" class="form-label">City</label>
+          </div>
+          <input type="text" pInputText class="form-control" id="city" formControlName="city">
+          <div class="alert alert-danger" style="color: red;" *ngIf="city.errors?.['required'] && (city.touched || city.dirty)">
+            <h5>City is Required !</h5>
+          </div >
+        </div>
+
+      </div>
+      <br>
+      <div class="row ">
+        <h3>Is Prime Member?</h3>
+        <p-inputSwitch class="form-control"  id="isPrimeMember" formControlName="isPrimeMember"></p-inputSwitch>
+      </div>
+
+
+      <div class="row">
+        <div class="col form-input">
+          <div class="col form-input">
+          <p-button  (click)="resetForm()" styleClass="p-button-warning"  >
+            <span class="material-symbols-outlined" >
+              Clear
+            </span>
+          </p-button>
+          </div>
+        </div>
+
+        <div class="col form-input">
+          <div class="row">
+            <div class="col form-input">
+              <p-button  type="submit" >
+                <span class="material-symbols-outlined">
+                  Save
+                </span>
+              </p-button>
+            </div>
+            <div class="col form-input">
+              <p-button  (click)="onCancel()" styleClass="p-button-danger"  >
+                <span class="material-symbols-outlined" >
+                  Back
+                </span>
+              </p-button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+    </form>
+    </div>
+
+        <ng-template pTemplate="footer">
+          <!-- <p-button icon="pi pi-check" type="submit" label="Yes" ></p-button>
+          <p-button icon="pi pi-times" (click)="onCancel()" label="No" ></p-button> -->
+        </ng-template>
+</p-dialog>
+
+
